@@ -32,6 +32,14 @@ export class AppComponent implements OnInit {
   }
 
   onQuestionUpdated(selectedOption: QuestionChanged) {
+    console.log(
+      'Section: ',
+      selectedOption.sectionIndex + 1,
+      '- Question: ',
+      selectedOption.question.id,
+      '- Answer: ',
+      selectedOption.response
+    );
     let index = this.answers.findIndex(
       (q) => q.id === selectedOption.question.id
     );

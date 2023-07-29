@@ -31,9 +31,9 @@
             (click)="answerQuestion(choiceOption.value)"
             type="radio"
             name="radioGroup"
-            [id]="'radioOption-' + choiceOption.value"
+            [id]="'radioOption-' + choiceOption.value + sectionNumber"
           />
-          <label [for]="'radioOption-' + choiceOption.value">{{
+          <label [for]="'radioOption-' + choiceOption.value + sectionNumber">{{
             choiceOption.label
           }}</label>
         </div>
@@ -53,6 +53,9 @@
           </option>
         </select>
       </div>
+    </div>
+    <div class="default-container" *ngIf="!isQuestion">
+      <input type="text" placeholder="Please type your answer" />
     </div>
   </div>
 </div>
