@@ -1,7 +1,7 @@
-import { Question } from './questions.model';
+import { DependentQuestion, Question } from './questions.model';
 
 export interface QuestionChanged {
-  question: Question;
+  question: Question | DependentQuestion;
   isCorrect: boolean;
   sectionIndex: number;
   response: string;

@@ -9,27 +9,35 @@ import { QuestionChanged } from '../models/questionChanged.model';
 })
 export class QuestionComponent implements OnInit {
   @Input()
-  question!: Question;
+  question!: Question | DependentQuestion;
   @Input()
   sectionNumber!: string;
   @Input()
   indexQuestion!: number;
+  @Input()
+  completeQuestion!: Question;
+  @Input()
+  fatherQuestionNumber = 0;
+
+  isQuestion = true;
 
   @Output('questionChanged')
   questionEmitter = new EventEmitter<QuestionChanged>();
 
   ngOnInit(): void {
-    if (this.question.dependentQuestion) {
-      console.log(this.question.dependentQuestion);
+    this.isQuestion = 'choiceOptions' in this.question;
+    if ('choiceOptions' in this.question) {
+      this.completeQuestion = this.question;
+    } else {
+      console.log(this.fatherQuestionNumber);
     }
   }
 
-  getValueFromSelect(event: string) {
-    console.log(event);
-  }
-
   answerQuestion(answer: string) {
-    let isCorrect = answer === this.question.response;
+    let isCorrect = false;
+    if ('response' in this.question) {
+      let isCorrect = answer === this.question.response;
+    }
 
     this.questionEmitter.emit({
       question: this.question,
