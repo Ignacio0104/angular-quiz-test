@@ -20,6 +20,7 @@ export class QuestionComponent implements OnInit {
   fatherQuestionNumber = 0;
 
   isQuestion = true;
+  showDependentQuestion = false;
 
   @Output('questionChanged')
   questionEmitter = new EventEmitter<QuestionChanged>();
@@ -37,6 +38,15 @@ export class QuestionComponent implements OnInit {
     let isCorrect = false;
     if ('response' in this.question) {
       let isCorrect = answer === this.question.response;
+    }
+
+    if (
+      this.question.hasDependentQuestion &&
+      answer === this.question.responseToDisplayDependentQuestionList
+    ) {
+      this.showDependentQuestion = true;
+    } else {
+      this.showDependentQuestion = false;
     }
 
     this.questionEmitter.emit({
