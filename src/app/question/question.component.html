@@ -1,0 +1,44 @@
+<div class="question-container">
+  <h4>{{ sectionNumber }}.{{ question.numberLevel }}</h4>
+  <h4>{{ question.importantIndicator }} {{ question.displayText }}</h4>
+  <div class="options-container" [ngSwitch]="question.type">
+    <div class="multiple-container" *ngSwitchCase="'three_buttons'">
+      <div
+        class="multiple-option"
+        *ngFor="let option of question.choiceOptions"
+      >
+        <button (click)="answerQuestion(option.value)">
+          {{ option.value }}
+        </button>
+      </div>
+    </div>
+    <div class="radio-container" *ngSwitchCase="'radio'">
+      <div
+        class="radio-option"
+        *ngFor="let choiceOption of question.choiceOptions"
+      >
+        <input
+          (click)="answerQuestion(choiceOption.value)"
+          type="radio"
+          name="radioGroup"
+        />
+        <label>{{ choiceOption.label }}</label>
+      </div>
+    </div>
+    <div class="dropdown-container" *ngSwitchCase="'dropdown'">
+      <select
+        #selectInput
+        name=""
+        id=""
+        (change)="answerQuestion(selectInput.value)"
+      >
+        <option
+          *ngFor="let option of question.choiceOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
