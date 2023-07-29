@@ -21,8 +21,11 @@
           (click)="answerQuestion(choiceOption.value)"
           type="radio"
           name="radioGroup"
+          [id]="'radioOption-' + choiceOption.value"
         />
-        <label>{{ choiceOption.label }}</label>
+        <label [for]="'radioOption-' + choiceOption.value">{{
+          choiceOption.label
+        }}</label>
       </div>
     </div>
     <div class="dropdown-container" *ngSwitchCase="'dropdown'">

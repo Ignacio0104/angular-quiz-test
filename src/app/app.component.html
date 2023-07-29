@@ -7,7 +7,11 @@
       [attr.aria-expanded]="expandedIndex == index"
       [attr.aria-controls]="'accordion-body-' + index"
     >
-      <app-section (click)="toggleExpanded(index)" [section]="section">
+      <app-section
+        (click)="toggleExpanded(index)"
+        [section]="section"
+        [selectedSection]="expandedIndex"
+      >
       </app-section>
       <div [ngClass]="expandedIndex == index ? 'questions-container' : ''">
         <app-question

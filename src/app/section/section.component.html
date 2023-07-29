@@ -2,11 +2,19 @@
   <div class="section-number">
     <h2>{{ section.numberLevel }}</h2>
   </div>
-  <div class="section-details">
+  <div
+    class="section-details"
+    [ngClass]="{ selected: selectedSection === +section.numberLevel - 1 }"
+  >
     <h4>{{ section.name }}</h4>
-    <p>
+    <p *ngIf="selectedSection !== +section.numberLevel - 1; else selectedText">
       Total questions: {{ section.totalQuestions }} , answered
       {{ section.answeredQuestions }}
     </p>
+    <ng-template #selectedText>
+      <p>
+        <b>{{ section.answeredQuestions }} </b>of {{ section.totalQuestions }}
+      </p>
+    </ng-template>
   </div>
 </div>

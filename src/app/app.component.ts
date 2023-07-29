@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Section } from './models/section.model';
 import { Question } from './models/questions.model';
 import { QUESTIONS, SECTIONS } from 'db-data';

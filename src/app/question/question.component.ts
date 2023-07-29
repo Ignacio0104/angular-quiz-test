@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Question } from '../models/questions.model';
+import { DependentQuestion, Question } from '../models/questions.model';
 import { QuestionChanged } from '../models/questionChanged.model';
 
 @Component({
@@ -19,7 +19,9 @@ export class QuestionComponent implements OnInit {
   questionEmitter = new EventEmitter<QuestionChanged>();
 
   ngOnInit(): void {
-    //console.log(this.question);
+    if (this.question.dependentQuestion) {
+      console.log(this.question.dependentQuestion);
+    }
   }
 
   getValueFromSelect(event: string) {

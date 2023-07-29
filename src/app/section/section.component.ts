@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Section } from '../models/section.model';
 
 @Component({
@@ -6,9 +12,17 @@ import { Section } from '../models/section.model';
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.sass'],
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnInit, OnChanges {
   @Input()
   section!: Section;
+  @Input()
+  selectedSection!: number;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.section);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.selectedSection);
+  }
 }
