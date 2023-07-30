@@ -13,7 +13,7 @@ import { Answer } from './models/answers.model';
 export class AppComponent implements OnInit {
   sections: Section[] = [];
   questions: Question[] = [];
-  expandedIndex: number = 0;
+  expandedIndex: number = -1;
   answers: Answer[] = [];
 
   constructor() {}
